@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "CSS 注入器",
+  "version": "1.0.0",
+  "description": "為網站自訂CSS樣式",
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "CSS 注入器"
+  },
+
+  "options_page": "options/options.html"
+}

@@ -1,0 +1,5 @@
+{
+  "name": "custom-css-injector",
+  "version": "1.0.0",
+  "description": "一個Chrome擴充功能，可以為任何網站自訂和注入CSS樣式"
+}

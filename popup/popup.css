@@ -1,0 +1,226 @@
+/* Popup 頁面樣式 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  background: #f5f5f5;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.popup-container {
+  width: 300px;
+  max-height: 500px;
+  background: white;
+  position: relative;
+}
+
+/* 標題列 */
+.header {
+  padding: 16px;
+  background: #007acc;
+  color: white;
+  border-bottom: 1px solid #005a9e;
+}
+
+.header h1 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.global-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.global-toggle label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.global-toggle input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* 目前網站訊息 */
+.current-site {
+  padding: 16px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.site-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-name {
+  font-weight: 600;
+  color: #2c3e50;
+  flex: 1;
+}
+
+.rule-count {
+  font-size: 12px;
+  color: #6c757d;
+  background: #e9ecef;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* 規則列表部分 */
+.rules-section {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.rules-header {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  font-weight: 600;
+  color: #495057;
+}
+
+.add-rule-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.add-rule-btn:hover {
+  background: #218838;
+}
+
+/* 規則列表 */
+.rules-list {
+  padding: 8px;
+}
+
+.no-rules {
+  text-align: center;
+  padding: 30px 16px;
+  color: #6c757d;
+}
+
+.no-rules p {
+  margin: 0 0 4px 0;
+}
+
+.no-rules .hint {
+  font-size: 12px;
+  color: #adb5bd;
+}
+
+/* 規則項目 */
+.rule-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 4px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+.rule-item:hover {
+  background: #e9ecef;
+}
+
+.rule-info {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.rule-name {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 2px;
+  font-size: 13px;
+}
+
+.rule-preview {
+  font-size: 11px;
+  color: #6c757d;
+  font-family: monospace;
+}
+
+.rule-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.rule-toggle input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* 底部按鈕 */
+.footer {
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  gap: 8px;
+}
+
+.settings-btn, .refresh-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.settings-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.settings-btn:hover {
+  background: #545b62;
+}
+
+.refresh-btn {
+  background: #007bff;
+  color: white;
+}
+
+.refresh-btn:hover {
+  background: #0056b3;
+}
+
+/* 滾動條樣式 */
+.rules-section::-webkit-scrollbar {
+  width: 6px;
+}
+
+.rules-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.rules-section::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.rules-section::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
