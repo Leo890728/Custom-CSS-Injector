@@ -59,6 +59,162 @@
     @apply translate-x-6;
   }
   
+  /* 程式碼編輯器樣式 - 重新設計 */
+  .tab-2 {
+    tab-size: 2;
+  }
+
+  /* 重置 pre 和 code 元素的所有預設樣式 */
+  .code-editor pre,
+  .code-editor pre code {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    font: inherit !important;
+    vertical-align: baseline !important;
+    line-height: inherit !important;
+    white-space: inherit !important;
+    word-wrap: inherit !important;
+    word-break: inherit !important;
+    background: transparent !important;
+    color: inherit !important;
+    display: block !important;
+  }
+
+  /* Prism.js 基礎樣式 - 簡化版 */
+  code.language-css {
+    color: rgb(51 65 85) !important;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+  }
+
+  /* 深色主題基礎文字 */
+  .dark code.language-css {
+    color: rgb(226 232 240) !important;
+  }
+
+  /* CSS 語法突顯 - 淺色主題 */
+  .language-css .token.selector {
+    color: rgb(37 99 235) !important; /* blue-600 */
+    font-weight: 600;
+  }
+  
+  .language-css .token.property {
+    color: rgb(5 150 105) !important; /* emerald-600 */
+    font-weight: 500;
+  }
+  
+  .language-css .token.string,
+  .language-css .token.attr-value {
+    color: rgb(234 88 12) !important; /* orange-600 */
+  }
+  
+  .language-css .token.number {
+    color: rgb(147 51 234) !important; /* purple-600 */
+    font-weight: 500;
+  }
+  
+  .language-css .token.comment {
+    color: rgb(107 114 128) !important; /* gray-500 */
+    font-style: italic;
+  }
+  
+  .language-css .token.punctuation {
+    color: rgb(75 85 99) !important; /* gray-600 */
+  }
+
+  /* CSS 語法突顯 - 深色主題 */
+  .dark .language-css .token.selector {
+    color: rgb(96 165 250) !important; /* blue-400 */
+    font-weight: 600;
+  }
+  
+  .dark .language-css .token.property {
+    color: rgb(52 211 153) !important; /* emerald-400 */
+    font-weight: 500;
+  }
+  
+  .dark .language-css .token.string,
+  .dark .language-css .token.attr-value {
+    color: rgb(251 146 60) !important; /* orange-400 */
+  }
+  
+  .dark .language-css .token.number {
+    color: rgb(168 85 247) !important; /* purple-400 */
+    font-weight: 500;
+  }
+  
+  .dark .language-css .token.comment {
+    color: rgb(148 163 184) !important; /* slate-400 */
+    font-style: italic;
+  }
+  
+  .dark .language-css .token.punctuation {
+    color: rgb(156 163 175) !important; /* gray-400 */
+  }
+}
+
+/* Chrome Extension 特定樣式 */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer components {
+  /* 按鈕組件 */
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 flex items-center justify-center;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+  }
+  
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+  
+  /* 輸入框組件 */
+  .input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  }
+  
+  /* 卡片組件 */
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200;
+  }
+  
+  /* 切換開關組件 */
+  .toggle {
+    @apply relative inline-flex h-6 w-11 items-center rounded-full bg-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+  
+  .toggle.active {
+    @apply bg-blue-200;
+  }
+  
+  .toggle-thumb {
+    @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform;
+  }
+  
+  .toggle.active .toggle-thumb {
+    @apply translate-x-6;
+  }
+  
   /* 程式碼編輯器 placeholder 樣式 */
   .code-editor-transparent::placeholder {
     color: rgb(148 163 184); /* slate-400 */
@@ -70,6 +226,20 @@
   }
   
   /* Prism.js 自定義淺色主題 */
+  .language-css,
+  code.language-css {
+    color: rgb(51 65 85) !important; /* slate-700 - 基本文字顏色 */
+  }
+  
+  /* 確保所有文字都可見 */
+  pre code.language-css {
+    color: rgb(51 65 85) !important;
+  }
+  
+  pre code.language-css * {
+    color: inherit !important;
+  }
+  
   .language-css .token.comment,
   .language-css .token.prolog,
   .language-css .token.doctype,
@@ -118,6 +288,20 @@
   }
   
   /* 深色主題的 Prism.js 語法突顯 */
+  .dark .language-css,
+  .dark code.language-css {
+    color: rgb(226 232 240) !important; /* slate-200 - 深色主題基本文字顏色 */
+  }
+  
+  /* 確保深色主題所有文字都可見 */
+  .dark pre code.language-css {
+    color: rgb(226 232 240) !important;
+  }
+  
+  .dark pre code.language-css * {
+    color: inherit !important;
+  }
+  
   .dark .language-css .token.comment,
   .dark .language-css .token.prolog,
   .dark .language-css .token.doctype,

@@ -67,50 +67,22 @@
         <div class="relative" :style="{ minHeight: Math.max(lineCount * 24 + 32, 200) + 'px' }">
           
           <!-- 行號 -->
-          <div v-if="showLineNumbers" :class="['absolute top-0 left-0 w-12 text-sm font-mono leading-6 text-right border-r pointer-events-none z-20 select-none', isDarkTheme ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-slate-100 text-slate-400 border-slate-300']" 
-            :style="{ 
-              paddingRight: '0.75rem',
-              paddingTop: '16px',
-              paddingBottom: '16px',
-              height: '100%',
-              minHeight: Math.max(lineCount * 24 + 32, 200) + 'px'
-            }">
+          <div v-if="showLineNumbers" :class="['absolute top-0 left-0 w-12 py-4 text-sm font-mono leading-6 text-right border-r pointer-events-none z-20 select-none', isDarkTheme ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-slate-100 text-slate-400 border-slate-300']" style="padding-right: 0.75rem;">
             <div v-for="n in lineCount" :key="n" class="leading-6 h-6">{{ n }}</div>
           </div>
           
-          <!-- 程式碼突顯顯示層 -->
+          <!-- 程式碼高亮顯示層 -->
           <pre 
             ref="highlightLayer"
-            :class="['absolute top-0 left-0 w-full m-0 text-sm font-mono leading-6 whitespace-pre-wrap pointer-events-none z-10 overflow-hidden box-border', isDarkTheme ? 'text-slate-200' : 'text-slate-700']"
-            :style="{ 
-              paddingLeft: showLineNumbers ? '4rem' : '1rem',
-              paddingRight: '1rem',
-              paddingTop: '16px',
-              paddingBottom: '16px',
-              marginTop: '0',
-              fontSize: '14px',
-              fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
-              lineHeight: '1.5',
-              background: 'transparent'
-            }"
-          ><code 
-            class="language-css block w-full h-full p-0 m-0"
-            v-html="highlightedCSS"
-          ></code></pre>
+            :class="['absolute top-0 left-0 w-full py-4 m-0 text-sm font-mono leading-6 whitespace-pre-wrap pointer-events-none z-10 overflow-hidden', isDarkTheme ? 'text-slate-200' : 'text-slate-700', showLineNumbers ? 'pl-16 pr-4' : 'px-4']"
+          ><code class="language-css" v-html="highlightedCSS"></code></pre>
           
           <!-- 實際輸入框 -->
           <textarea
             ref="codeInput"
             v-model="localRule.css"
-            :class="['relative z-30 w-full bg-transparent text-transparent resize-none border-0 outline-0 py-4 whitespace-pre-wrap box-border', isDarkTheme ? 'caret-slate-300' : 'caret-slate-700']"
-            :style="{ 
-              paddingLeft: showLineNumbers ? '4rem' : '1rem',
-              paddingRight: '1rem',
-              minHeight: Math.max(lineCount * 24 + 32, 200) + 'px',
-              fontSize: '14px',
-              fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
-              lineHeight: '1.5'
-            }"
+            :class="['relative z-30 w-full bg-transparent text-transparent resize-none border-0 outline-0 py-4 text-sm font-mono leading-6 whitespace-pre-wrap', isDarkTheme ? 'caret-slate-300' : 'caret-slate-700', showLineNumbers ? 'pl-16 pr-4' : 'px-4']"
+            :style="{ minHeight: Math.max(lineCount * 24 + 32, 200) + 'px' }"
             @input="handleInputChange"
             @scroll="handleScroll"
             @keydown="handleKeyDown"
@@ -183,7 +155,7 @@ export default {
       return localRule.value.css ? Math.max(localRule.value.css.split('\n').length, 1) : 1
     })
 
-    // 語法突顯
+    // 語法高亮
     const highlightedCSS = computed(() => {
       if (!localRule.value.css) return ''
       
@@ -193,7 +165,7 @@ export default {
         }
         return escapeHtml(localRule.value.css)
       } catch (error) {
-        console.warn('語法突顯失敗:', error)
+        console.warn('語法高亮失敗:', error)
         return escapeHtml(localRule.value.css)
       }
     })
@@ -232,7 +204,7 @@ export default {
         emit('update', { ...localRule.value })
       }, 500)
       
-      // 立即更新語法突顯
+      // 立即更新語法高亮
       nextTick(() => {
         if (highlightLayer.value && Prism) {
           Prism.highlightAllUnder(highlightLayer.value)
