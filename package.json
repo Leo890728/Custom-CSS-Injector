@@ -11,6 +11,7 @@
     "build:ext": "npm run build && echo 擴充功能已構建到 dist/ 目錄"
   },
   "dependencies": {
+    "prismjs": "^1.30.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {

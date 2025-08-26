@@ -58,4 +58,110 @@
   .toggle.active .toggle-thumb {
     @apply translate-x-6;
   }
+  
+  /* 程式碼編輯器 placeholder 樣式 */
+  .code-editor-transparent::placeholder {
+    color: rgb(148 163 184); /* slate-400 */
+  }
+  
+  /* 設定 tab 大小 */
+  .tab-2 {
+    tab-size: 2;
+  }
+  
+  /* Prism.js 自定義淺色主題 */
+  .language-css .token.comment,
+  .language-css .token.prolog,
+  .language-css .token.doctype,
+  .language-css .token.cdata {
+    color: rgb(107 114 128); /* gray-500 */
+    font-style: italic;
+  }
+  
+  .language-css .token.selector {
+    color: rgb(59 130 246); /* blue-500 */
+    font-weight: 600;
+  }
+  
+  .language-css .token.property {
+    color: rgb(16 185 129); /* emerald-500 */
+    font-weight: 500;
+  }
+  
+  .language-css .token.string,
+  .language-css .token.attr-value {
+    color: rgb(234 88 12); /* orange-600 */
+  }
+  
+  .language-css .token.number {
+    color: rgb(139 92 246); /* violet-500 */
+    font-weight: 500;
+  }
+  
+  .language-css .token.function {
+    color: rgb(245 101 101); /* red-400 */
+  }
+  
+  .language-css .token.important,
+  .language-css .token.atrule {
+    color: rgb(236 72 153); /* pink-500 */
+    font-weight: 600;
+  }
+  
+  .language-css .token.punctuation {
+    color: rgb(75 85 99); /* gray-600 */
+  }
+  
+  .language-css .token.keyword {
+    color: rgb(139 92 246); /* violet-500 */
+    font-weight: 600;
+  }
+  
+  /* 深色主題的 Prism.js 語法突顯 */
+  .dark .language-css .token.comment,
+  .dark .language-css .token.prolog,
+  .dark .language-css .token.doctype,
+  .dark .language-css .token.cdata {
+    color: rgb(148 163 184); /* slate-400 */
+    font-style: italic;
+  }
+  
+  .dark .language-css .token.selector {
+    color: rgb(96 165 250); /* blue-400 */
+    font-weight: 600;
+  }
+  
+  .dark .language-css .token.property {
+    color: rgb(52 211 153); /* emerald-400 */
+    font-weight: 500;
+  }
+  
+  .dark .language-css .token.string,
+  .dark .language-css .token.attr-value {
+    color: rgb(251 146 60); /* orange-400 */
+  }
+  
+  .dark .language-css .token.number {
+    color: rgb(168 85 247); /* violet-400 */
+    font-weight: 500;
+  }
+  
+  .dark .language-css .token.function {
+    color: rgb(248 113 113); /* red-400 */
+  }
+  
+  .dark .language-css .token.important,
+  .dark .language-css .token.atrule {
+    color: rgb(244 114 182); /* pink-400 */
+    font-weight: 600;
+  }
+  
+  .dark .language-css .token.punctuation {
+    color: rgb(156 163 175); /* gray-400 */
+  }
+  
+  .dark .language-css .token.keyword {
+    color: rgb(168 85 247); /* violet-400 */
+    font-weight: 600;
+  }
 }
