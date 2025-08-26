@@ -4,7 +4,14 @@
     <header class="bg-blue-600 text-white shadow-sm">
       <div class="max-w-7xl mx-auto px-6 py-6">
         <div class="flex justify-between items-center">
-          <h1 class="text-2xl font-semibold">CSS 注入器設定</h1>
+          <div class="flex items-center space-x-3">
+            <img 
+              src="./assets/css-logo.png" 
+              alt="CSS Logo" 
+              class="w-8 h-8"
+            />
+            <h1 class="text-2xl font-semibold">CSS 注入器設定</h1>
+          </div>
           <div class="flex items-center space-x-3">
             <input 
               type="checkbox" 
@@ -36,7 +43,7 @@
               class="btn btn-primary btn-sm"
               @click="showAddWebsiteModal"
             >
-              + 添加網站
+              + 新增網站
             </button>
           </div>
 
@@ -61,8 +68,8 @@
             <svg class="w-12 h-12 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
             </svg>
-            <p class="text-gray-500">尚未添加任何網站</p>
-            <p class="text-gray-400 text-sm mt-1">點擊「+ 添加網站」開始</p>
+            <p class="text-gray-500">尚未新增任何網站</p>
+            <p class="text-gray-400 text-sm mt-1">點擊「+ 新增網站」開始</p>
           </div>
           
           <div class="space-y-2">
@@ -102,16 +109,18 @@
       <div class="flex-1 bg-white">
         <div v-if="!currentWebsite" class="flex items-center justify-center h-full">
           <div class="text-center max-w-md">
-            <svg class="w-16 h-16 mx-auto text-gray-400 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
-            </svg>
-            <h2 class="text-2xl font-medium text-gray-900 mb-4">歡迎使用 CSS 注入器</h2>
-            <p class="text-gray-600 mb-6">選擇左側的網站來管理 CSS 規則，或添加新網站開始使用。</p>
+            <div class="mb-8">
+              <img 
+                src="./assets/css-logo.png" 
+                alt="CSS Logo" 
+                class="w-24 h-24 mx-auto mb-4 opacity-60"
+              />
+              <h2 class="text-2xl font-medium text-gray-900 mb-4">歡迎使用 CSS 注入器</h2>
+              <p class="text-gray-600 mb-6">選擇左側的網站來管理 CSS 規則，或新增網站開始使用。</p>
+            </div>
             
             <!-- 快速開始範例 -->
-            <div v-if="websites.includes('ilearn.fcu.edu.tw')" class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-              <h3 class="text-lg font-medium text-green-900 mb-2">🎯 快速開始</h3>
-              <p class="text-green-800 text-sm mb-3">我們已經為您準備了逢甲大學 iLearn 的深色主題範例</p>
+            <div v-if="websites.includes('ilearn.fcu.edu.tw')" class="p-4 mb-6">
               <button 
                 class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
                 @click="selectWebsite('ilearn.fcu.edu.tw')"
@@ -125,7 +134,7 @@
                 class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
                 @click="showAddWebsiteModal"
               >
-                + 添加新網站
+                + 新增網站
               </button>
               <p class="text-sm text-gray-500">開始為您常用的網站自訂CSS樣式</p>
             </div>
@@ -176,11 +185,11 @@
       </div>
     </div>
 
-    <!-- 添加網站對話框 -->
+    <!-- 新增網站對話框 -->
     <div v-if="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" @click="hideAddWebsiteModal">
       <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4" @click.stop>
         <div class="flex justify-between items-center p-6 border-b border-gray-200">
-          <h3 class="text-lg font-medium text-gray-900">添加新網站</h3>
+          <h3 class="text-lg font-medium text-gray-900">新增網站</h3>
           <button 
             class="text-gray-400 hover:text-gray-600 transition-colors" 
             @click="hideAddWebsiteModal"
@@ -210,7 +219,7 @@
         
         <div class="flex justify-end space-x-3 p-6 border-t border-gray-200">
           <button class="btn btn-secondary" @click="hideAddWebsiteModal">取消</button>
-          <button class="btn btn-primary" @click="confirmAddWebsite">添加</button>
+          <button class="btn btn-primary" @click="confirmAddWebsite">新增</button>
         </div>
       </div>
     </div>
@@ -498,10 +507,10 @@ i[title="切換訊息選單"] {
         websiteRulesCounts.value.set(hostname, 0) // 設置新網站的規則數量為0
         hideAddWebsiteModal()
         selectWebsite(hostname)
-        showNotification('網站添加成功')
+        showNotification('網站新增成功')
       } catch (error) {
-        console.error('添加網站失敗:', error)
-        showNotification('添加失敗', 'error')
+        console.error('新增網站失敗:', error)
+        showNotification('新增失敗', 'error')
       }
     }
 

@@ -71,7 +71,7 @@
             <div v-for="n in lineCount" :key="n" class="leading-6 h-6">{{ n }}</div>
           </div>
           
-          <!-- 程式碼高亮顯示層 -->
+          <!-- 程式碼突顯顯示層 -->
           <pre 
             ref="highlightLayer"
             :class="['absolute top-0 left-0 w-full py-4 m-0 text-sm font-mono leading-6 whitespace-pre-wrap pointer-events-none z-10 overflow-hidden', isDarkTheme ? 'text-slate-200' : 'text-slate-700', showLineNumbers ? 'pl-16 pr-4' : 'px-4']"
@@ -155,7 +155,7 @@ export default {
       return localRule.value.css ? Math.max(localRule.value.css.split('\n').length, 1) : 1
     })
 
-    // 語法高亮
+    // 語法突顯
     const highlightedCSS = computed(() => {
       if (!localRule.value.css) return ''
       
@@ -165,7 +165,7 @@ export default {
         }
         return escapeHtml(localRule.value.css)
       } catch (error) {
-        console.warn('語法高亮失敗:', error)
+        console.warn('語法突顯失敗:', error)
         return escapeHtml(localRule.value.css)
       }
     })
@@ -204,7 +204,7 @@ export default {
         emit('update', { ...localRule.value })
       }, 500)
       
-      // 立即更新語法高亮
+      // 立即更新語法突顯
       nextTick(() => {
         if (highlightLayer.value && Prism) {
           Prism.highlightAllUnder(highlightLayer.value)
