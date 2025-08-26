@@ -78,7 +78,10 @@
               @click="selectWebsite(website)"
             >
               <div class="flex-1 min-w-0">
-                <div class="font-medium truncate">{{ website }}</div>
+                <div class="font-medium truncate flex items-center">
+                  {{ website }}
+                  <span v-if="website === 'ilearn.fcu.edu.tw'" class="ml-2 px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">範例</span>
+                </div>
                 <div class="text-sm text-gray-500">{{ getWebsiteRulesCount(website) }} 條規則</div>
               </div>
               <button 
@@ -103,7 +106,29 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
             </svg>
             <h2 class="text-2xl font-medium text-gray-900 mb-4">歡迎使用 CSS 注入器</h2>
-            <p class="text-gray-600 mb-8">選擇左側的網站來管理 CSS 規則，或添加新網站開始使用。</p>
+            <p class="text-gray-600 mb-6">選擇左側的網站來管理 CSS 規則，或添加新網站開始使用。</p>
+            
+            <!-- 快速開始範例 -->
+            <div v-if="websites.includes('ilearn.fcu.edu.tw')" class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+              <h3 class="text-lg font-medium text-green-900 mb-2">🎯 快速開始</h3>
+              <p class="text-green-800 text-sm mb-3">我們已經為您準備了逢甲大學 iLearn 的深色主題範例</p>
+              <button 
+                class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                @click="selectWebsite('ilearn.fcu.edu.tw')"
+              >
+                查看 iLearn 深色主題範例
+              </button>
+            </div>
+            
+            <div class="space-y-3">
+              <button 
+                class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                @click="showAddWebsiteModal"
+              >
+                + 添加新網站
+              </button>
+              <p class="text-sm text-gray-500">開始為您常用的網站自訂CSS樣式</p>
+            </div>
           </div>
         </div>
 
@@ -230,8 +255,128 @@ export default {
       )
     })
 
+    const createDefaultExample = async () => {
+      const exampleSite = 'ilearn.fcu.edu.tw'
+      const exampleRule = {
+        id: `rule_example_${Date.now()}`,
+        name: 'iLearn 深色主題',
+        description: '為逢甲大學iLearn平台應用深色主題樣式，提供更舒適的學習體驗',
+        css: `/* 定義 CSS 變數 */
+:root {
+  --bg-dark: #1a1a1e;
+  --bg-darker: #121212;
+  --bg-container: #2a2a2c;
+  --text-light: #efeff0;
+  --text-highlight: #e50015;
+  --text-navbar: #121214;
+}
+
+/* 在此輸入您的CSS */
+#page {
+  background: var(--bg-darker) !important;
+}
+
+.page-header-headings > h1 {
+  color: var(--text-light) !important;
+}
+
+.navbar {
+  background-color: var(--bg-dark) !important;
+}
+
+#page-navbar {
+  color: var(--text-navbar);
+}
+
+.main-inner {
+  background-color: var(--bg-dark) !important;
+}
+
+#region-main > div[role="main"] {
+  background-color: var(--bg-dark) !important;
+}
+
+#block-region-content > section {
+  background-color: var(--bg-dark) !important;
+}
+
+.card-title {
+  color: var(--text-light);
+}
+
+input[role="searchbox"] {
+  background-color: var(--bg-dark);
+}
+
+.course-info-container {
+  background-color: var(--bg-container);
+}
+
+.align-items-start {
+  background-color: var(--bg-container);
+  border-radius: 0 0 8px 8px;
+}
+
+.align-items-start .card-footer {
+  background-color: var(--bg-container) !important;
+}
+
+.progress {
+  background-color: var(--bg-darker);
+}
+
+.card-footer p {
+  color: var(--text-light) !important;
+}
+
+.multiline {
+  color: var(--text-highlight);
+}
+
+a[role="menuitem"] {
+  color: var(--text-light) !important;
+}
+
+a[role="menuitem"]:hover {
+  background-color: var(--bg-container) !important;
+}
+
+.dropdown-menu {
+  background-color: var(--bg-container) !important;
+}
+
+i[title="切換通知選單"] {
+  color: var(--text-light) !important;
+}
+
+i[title="切換訊息選單"] {
+  color: var(--text-light) !important;
+}
+
+.sectionname {
+  color: var(--text-light) !important;
+}`,
+        enabled: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      }
+
+      // 檢查是否已存在範例
+      const result = await chrome.storage.local.get([exampleSite])
+      if (!result[exampleSite] || result[exampleSite].length === 0) {
+        // 建立範例網站和規則
+        await chrome.storage.local.set({
+          [exampleSite]: [exampleRule]
+        })
+        console.log('已建立 iLearn 深色主題範例')
+      }
+    }
+
     const loadData = async () => {
       try {
+        // 建立預設範例（如果不存在）
+        await createDefaultExample()
+
         // 載入全域設定
         const globalResult = await chrome.storage.local.get(['globalEnabled'])
         globalEnabled.value = globalResult.globalEnabled !== false

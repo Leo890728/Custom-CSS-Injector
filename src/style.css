@@ -224,6 +224,28 @@
   .tab-2 {
     tab-size: 2;
   }
+
+  /* RuleCard 特定的切換開關樣式 */
+  .toggle-switch {
+    @apply relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+  
+  .toggle-switch.toggle-enabled {
+    @apply bg-blue-500;
+  }
+  
+  .toggle-switch .toggle-thumb {
+    @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-1;
+  }
+  
+  .toggle-switch.toggle-enabled .toggle-thumb {
+    @apply translate-x-6;
+  }
+
+  /* 卡片陰影效果 */
+  .card-shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
   
   /* Prism.js 自定義淺色主題 */
   .language-css,
