@@ -1,5 +1,22 @@
 {
   "name": "custom-css-injector",
   "version": "1.0.0",
-  "description": "一個Chrome擴充功能，可以為任何網站自訂和注入CSS樣式"
+  "description": "一個Chrome擴充功能，可以為任何網站自訂和注入CSS樣式",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node build-post.js",
+    "preview": "vite preview",
+    "dev:ext": "cp manifest.dev.json manifest.json && echo 開發模式已啟用",
+    "build:ext": "npm run build && echo 擴充功能已構建到 dist/ 目錄"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "tailwindcss": "^4.1.12",
+    "vite": "^5.0.0"
+  }
 }
